@@ -1,21 +1,24 @@
-import axios from 'axios'
+import axios from './axios'
 import React,{useState, useEffect} from 'react'
 import requests from './Api'
+import './Banner.css'
 
 function Banner() {
+    function truncate(str, n){
+        return str?.length > n ? str.substr(0,n-1)+"..." : str;
+    }
     const[movie, setMovie] = useState([])
-    useEffect(()=>{
+        useEffect(()=>{
         async function fetchData(){
-            const request = await axios.get(requests.fetchTopRated)
-            console.log(request.data.results)
+            const request = await axios.get(requests.fetchNetflixOrignals)
             setMovie(
-                request.data.results[Math.floor(Math.random() * request.data.results.lenght-1)]
+                request.data.results[Math.floor(Math.random()* request.data.results.length-1)]
             )
             return request
         }
         fetchData()
-    })
-    // console.log(movie)
+    },[]) 
+    // console.table(movie)
     return (
         <header
         className='banner'
@@ -25,7 +28,17 @@ function Banner() {
             backgroundPosition: 'center center'
         }}>
             <div className='banner__content'>
-                <h1>{movie?.title || movie?.name || movie?.original_name}</h1>
+                <h1 className = 'banner__title'>{movie?.title || movie?.name || movie?.original_name}</h1>
+            <div className = "banner__buttons">
+                <button className = 'banner__button'>Play</button>
+                <button className = 'banner__button'>My List</button>
+            </div>
+            <h1 className = 'banner__description'>
+                {truncate(movie?.overview, 150)}</h1>
+             
+            </div>
+            <div className='banner__fadeButton'>
+                
             </div>
 
         </header>

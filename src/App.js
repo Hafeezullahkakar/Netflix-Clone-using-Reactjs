@@ -4,9 +4,11 @@ import "./App.css";
 import Banner from './Components/Banner'
 import Row from "./Components/Row";
 import requests from "./Components/Api";
+import Nav from './Components/Nav'
 function App() {
   return (
     <div className="App">
+      <Nav />
       <Banner />
       <Row title="NETFLIX ORIGNALS" fetchUrl={requests.fetchNetflixOrignals}
         isLargeRow = {true}

@@ -4,11 +4,13 @@
     overflow-y: hidden;
     overflow-x: scroll;
     padding: 20px;
+    color: white;
 }
 .row__posters::-webkit-scrollbar{
     display: none;
 }
 .row__posterImage{
+    color: white;
     object-fit: contain;
     width: 100%;
     max-height: 100px;
@@ -21,6 +23,7 @@
 }
 .row_largePoster{
     max-height: 250px;
+ 
 }
 .row_largePoster:hover{
     transform: scale(1.09);
